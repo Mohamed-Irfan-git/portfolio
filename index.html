@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Mohamed Irfan — Software Engineer</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet"/>
-
+<link rel="stylesheet" href="style.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -392,61 +392,82 @@ const PINNED = [
   "enterprise-banking-platform"
 ];
 
+function escapeHTML(str) {
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 async function loadGH() {
-  const g = document.getElementById('pgrid');
+  const g = document.getElementById("pgrid");
+  g.innerHTML = '<div class="ploading"><span class="cur" style="margin-right:8px"></span>fetching repositories...</div>';
 
   try {
-    const repos = await Promise.all(
-      PINNED.map(name =>
-        fetch(`https://api.github.com/repos/${GH}/${name}`).then(r => {
-          if (!r.ok) throw new Error("HTTP " + r.status + " (" + name + ")");
-          return r.json();
-        })
-      )
-    );
+    const r = await fetch("/api/github");
+    const allRepos = await r.json();
 
-    g.innerHTML = '';
+    if (!r.ok) {
+      throw new Error(allRepos.message || `HTTP ${r.status}`);
+    }
+
+    const repoMap = new Map(allRepos.map(repo => [repo.name, repo]));
+    const repos = PINNED.map(name => repoMap.get(name)).filter(Boolean);
+
+    g.innerHTML = "";
 
     if (!repos.length) {
       g.innerHTML = '<div class="perr">No pinned repos found.</div>';
+      document.getElementById("stat-repos").textContent = "0";
       return;
     }
 
-    document.getElementById('stat-repos').textContent = repos.length + '+';
+    document.getElementById("stat-repos").textContent = repos.length + "+";
 
     repos.forEach(repo => {
-      const lang = repo.language || 'Code';
-      const upd = new Date(repo.updated_at).toLocaleDateString('en-US', {
-        month: 'short',
-        year: 'numeric'
+      const lang = repo.language || "Code";
+      const upd = new Date(repo.updated_at).toLocaleDateString("en-US", {
+        month: "short",
+        year: "numeric"
       });
 
-      const el = document.createElement('div');
-      el.className = 'pcard';
+      const el = document.createElement("div");
+      el.className = "pcard";
 
       el.innerHTML = `
         <div class="badge">Pinned</div>
         <div class="plang">
-          <span class="ldot" style="background:${lcolor(repo.language)}"></span>${lang.toUpperCase()}
+          <span class="ldot" style="background:${lcolor(repo.language)}"></span>${escapeHTML(lang.toUpperCase())}
         </div>
-        <div class="pname">${repo.name}</div>
-        <div class="pdesc">${repo.description || 'No description provided.'}</div>
+        <div class="pname">${escapeHTML(repo.name)}</div>
+        <div class="pdesc">${escapeHTML(repo.description || "No description provided.")}</div>
         <div class="pmeta">
           <span>&#9733; ${repo.stargazers_count}</span>
           <span>&#8910; ${repo.forks_count}</span>
           <span>&#8635; ${upd}</span>
         </div>
         <div class="plinks">
-          <a class="pl" href="${repo.html_url}" target="_blank">View Repo →</a>
-          ${repo.homepage ? `<a class="pl plp" href="${repo.homepage}" target="_blank">Live Demo →</a>` : ''}
+          <a class="pl" href="${escapeHTML(repo.html_url)}" target="_blank" rel="noopener noreferrer">View Repo →</a>
+          ${repo.homepage ? `<a class="pl plp" href="${escapeHTML(repo.homepage)}" target="_blank" rel="noopener noreferrer">Live Demo →</a>` : ""}
         </div>
       `;
 
       g.appendChild(el);
     });
+
+    const missing = PINNED.filter(name => !repoMap.has(name));
+    if (missing.length) {
+      const warn = document.createElement("div");
+      warn.className = "perr";
+      warn.innerHTML = `Missing pinned repos:<br>${missing.map(escapeHTML).join("<br>")}`;
+      g.appendChild(warn);
+    }
   } catch (e) {
-    g.innerHTML = `<div class="perr">// GitHub fetch failed: ${e.message}<br>
-    <a href="https://github.com/${GH}" target="_blank" style="color:var(--neon)">View on GitHub directly →</a></div>`;
+    g.innerHTML = `<div class="perr">// GitHub fetch failed: ${escapeHTML(e.message)}<br>
+      <a href="https://github.com/${GH}" target="_blank" style="color:var(--neon)">View on GitHub directly →</a>
+    </div>`;
   }
 }
 /* ── LEETCODE STATS ── */
