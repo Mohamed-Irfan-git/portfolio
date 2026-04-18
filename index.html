@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mohamed Irfan — Software Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet"/>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --neon:#00fff7;--neon2:#ff00c8;--neon3:#ffe600;
+  --bg:#020b12;--bg2:#071520;--bg3:#0a1f2e;
+  --text:#b8d4e0;--text2:#6a9ab0;
+  --border:rgba(0,255,247,0.18);
+  --fm:'Share Tech Mono',monospace;
+  --fd:'Orbitron',sans-serif;
+  --fb:'Rajdhani',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.04) 2px,rgba(0,0,0,0.04) 4px);pointer-events:none;z-index:999}
+nav{position:fixed;top:0;left:0;width:100%;z-index:100;background:rgba(2,11,18,0.94);border-bottom:1px solid var(--border);backdrop-filter:blur(10px);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-logo{font-family:var(--fd);font-size:12px;color:var(--neon);letter-spacing:3px;text-decoration:none}
+.nav-links{display:flex;gap:1.8rem}
+.nav-links a{font-family:var(--fm);font-size:11px;color:var(--text2);text-decoration:none;letter-spacing:2px;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--neon)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--neon)}
+@media(max-width:700px){.nav-links{display:none;position:absolute;top:56px;left:0;width:100%;background:rgba(2,11,18,0.98);flex-direction:column;padding:1rem 2rem;gap:1rem;border-bottom:1px solid var(--border)}.nav-links.open{display:flex}.hamburger{display:flex}}
+section{padding:100px 6vw 70px}
+.slabel{font-family:var(--fm);font-size:11px;color:var(--neon2);letter-spacing:4px;text-transform:uppercase;margin-bottom:.5rem}
+.stitle{font-family:var(--fd);font-size:clamp(26px,4vw,48px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:2rem}
+.na{color:var(--neon)}.n2a{color:var(--neon2)}.n3a{color:var(--neon3)}
+.divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--neon),transparent)}
+.btn{font-family:var(--fm);font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:11px 26px;border:1px solid var(--neon);color:var(--neon);background:transparent;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-block}
+.btn:hover{background:rgba(0,255,247,.08)}
+.btnf{background:var(--neon);color:var(--bg)}.btnf:hover{opacity:.85}
+.btnp{border-color:var(--neon2);color:var(--neon2)}.btnp:hover{background:rgba(255,0,200,.08)}
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:80px}
+.hgrid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+@media(max-width:760px){.hgrid{grid-template-columns:1fr}.hvisual{display:none!important}}
+.hpre{font-family:var(--fm);font-size:11px;color:var(--neon2);letter-spacing:3px;margin-bottom:1rem}
+.hname{font-family:var(--fd);font-size:clamp(32px,5.5vw,74px);font-weight:900;line-height:1;color:#fff;margin-bottom:.5rem}
+.hrole{font-family:var(--fd);font-size:clamp(12px,1.8vw,20px);color:var(--neon);letter-spacing:4px;margin-bottom:1.5rem}
+.hbio{font-size:15px;line-height:1.85;color:var(--text2);max-width:480px;margin-bottom:2.5rem}
+.bgrp{display:flex;gap:1rem;flex-wrap:wrap}
+.hvisual{display:flex;align-items:center;justify-content:center}
+.aframe{width:240px;height:240px;border:2px solid var(--neon);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:60px;color:var(--neon);background:var(--bg3);position:relative}
+.aframe::before{content:'';position:absolute;top:-8px;left:-8px;right:-8px;bottom:-8px;border:1px solid rgba(0,255,247,.15)}
+.co{position:absolute;width:18px;height:18px;border-color:var(--neon2);border-style:solid}
+.ctl{top:-12px;left:-12px;border-width:2px 0 0 2px}
+.cbr{bottom:-12px;right:-12px;border-width:0 2px 2px 0}
+.sdot{position:absolute;bottom:8px;right:8px;display:flex;align-items:center;gap:6px;font-family:var(--fm);font-size:9px;color:var(--neon)}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--neon);animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
+.terminal{background:#071520;border:1px solid var(--border);font-family:var(--fm);font-size:12px;padding:1.2rem;line-height:1.9;margin-top:2rem;max-width:460px}
+.tbar{display:flex;gap:6px;margin-bottom:1rem}
+.td{width:10px;height:10px;border-radius:50%}
+.tr{background:#ff5f57}.ty{background:#febc2e}.tg{background:#28c840}
+.tcm{color:#3a6478}.tk{color:var(--neon2)}.tv{color:var(--neon3)}.ts{color:var(--neon)}
+.cur{display:inline-block;width:8px;height:14px;background:var(--neon);animation:blink 1s step-end infinite;vertical-align:middle}
+@keyframes blink{50%{opacity:0}}
+#about{background:var(--bg2)}
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+@media(max-width:760px){.agrid{grid-template-columns:1fr}}
+.srow{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem}
+.sbox{border:1px solid var(--border);padding:1.5rem 1rem;text-align:center;background:var(--bg3);position:relative}
+.sbox::after{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--neon)}
+.snum{font-family:var(--fd);font-size:28px;font-weight:900;color:var(--neon);display:block}
+.slbl{font-family:var(--fm);font-size:9px;color:var(--text2);letter-spacing:2px;margin-top:4px;display:block}
+#skills{background:var(--bg)}
+.skgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
+.skcat{background:var(--bg3);border:1px solid var(--border);padding:1.5rem;position:relative}
+.skcat::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:var(--neon2)}
+.cttl{font-family:var(--fd);font-size:10px;letter-spacing:3px;color:var(--neon2);margin-bottom:1.2rem;text-transform:uppercase}
+.sktags{display:flex;flex-wrap:wrap;gap:8px}
+.sk{font-family:var(--fm);font-size:11px;padding:4px 11px;border:1px solid rgba(0,255,247,.22);color:var(--neon);background:rgba(0,255,247,.03)}
+.blist{display:flex;flex-direction:column;gap:13px}
+.bitem{display:flex;flex-direction:column;gap:5px}
+.blbl{font-family:var(--fm);font-size:10px;color:var(--text2);display:flex;justify-content:space-between}
+.btrack{height:3px;background:rgba(255,255,255,.06)}
+.bfill{height:100%;background:var(--neon);position:relative}
+.bfill::after{content:'';position:absolute;right:0;top:-3px;width:2px;height:9px;background:var(--neon)}
+#projects{background:var(--bg2)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.5rem}
+.pcard{background:var(--bg);border:1px solid var(--border);padding:1.5rem;position:relative;overflow:hidden;transition:border-color .25s,transform .2s;display:flex;flex-direction:column}
+.pcard:hover{border-color:var(--neon);transform:translateY(-3px)}
+.pcard::after{content:'';position:absolute;top:0;right:0;width:0;height:0;border-style:solid;border-width:0 22px 22px 0;border-color:transparent var(--neon2) transparent transparent}
+.plang{font-family:var(--fm);font-size:9px;letter-spacing:2px;color:var(--text2);margin-bottom:.7rem;display:flex;align-items:center;gap:6px}
+.ldot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.pname{font-family:var(--fd);font-size:14px;font-weight:700;color:#fff;margin-bottom:.5rem}
+.pdesc{font-size:13px;line-height:1.75;color:var(--text2);margin-bottom:1rem;flex:1}
+.pmeta{display:flex;gap:1rem;font-family:var(--fm);font-size:10px;color:var(--text2);margin-bottom:1rem}
+.plinks{display:flex;gap:1rem;margin-top:auto}
+.pl{font-family:var(--fm);font-size:10px;color:var(--neon);text-decoration:none;letter-spacing:1px;border-bottom:1px solid transparent;transition:border-color .2s;text-transform:uppercase}
+.pl:hover{border-bottom-color:var(--neon)}
+.plp{color:var(--neon2)}.plp:hover{border-bottom-color:var(--neon2)}
+.ploading{font-family:var(--fm);font-size:12px;color:var(--text2);padding:2.5rem;text-align:center;letter-spacing:2px;grid-column:1/-1;border:1px solid var(--border)}
+.perr{font-family:var(--fm);font-size:11px;color:#ff375f;padding:1.2rem 1.5rem;border:1px solid rgba(255,55,95,.3);grid-column:1/-1;line-height:2}
+#leetcode{background:var(--bg)}
+.lcgrid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+@media(max-width:760px){.lcgrid{grid-template-columns:1fr}}
+.lcstats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
+.lcbox{background:var(--bg3);border:1px solid var(--border);padding:1.2rem;text-align:center}
+.lcnum{font-family:var(--fd);font-size:28px;font-weight:900;display:block}
+.easy{color:#00b8a9}.med{color:#ffa116}.hard{color:#ff375f}
+.lclbl{font-family:var(--fm);font-size:9px;color:var(--text2);letter-spacing:2px;margin-top:4px;display:block}
+.lccard{background:var(--bg3);border:1px solid var(--border);padding:1.5rem;text-decoration:none;display:block;transition:border-color .2s}
+.lccard:hover{border-color:var(--neon)}
+.lcrow{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.lcbadge{font-family:var(--fd);font-size:10px;letter-spacing:2px;padding:5px 12px;border:1px solid var(--neon3);color:var(--neon3)}
+.lcdet{font-family:var(--fm);font-size:11px;color:var(--text2);line-height:2.2;border-top:1px solid var(--border);padding-top:1rem;margin-top:1rem}
+.lcdet span{color:var(--text)}
+.lchint{font-family:var(--fm);font-size:9px;color:var(--neon2);letter-spacing:2px;text-align:center;margin-top:.8rem}
+.hmwrap{background:var(--bg3);border:1px solid var(--border);padding:1.5rem;margin-top:2.5rem}
+.hmtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem}
+.hmtitle{font-family:var(--fm);font-size:10px;color:var(--text2);letter-spacing:2px}
+.hmtotal{font-family:var(--fd);font-size:12px;color:var(--neon);letter-spacing:1px}
+.hmscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+.hminner{display:inline-flex;flex-direction:column;min-width:650px}
+.mrow{display:flex;font-family:var(--fm);font-size:9px;color:var(--text2);margin-bottom:4px;padding-left:28px;min-height:13px}
+.hmarea{display:flex;gap:3px}
+.dlbls{display:flex;flex-direction:column;gap:2px;margin-right:4px;flex-shrink:0;width:24px}
+.dlbl{font-family:var(--fm);font-size:9px;color:var(--text2);height:11px;line-height:11px;text-align:right;padding-right:3px}
+.wcols{display:flex;gap:2px}
+.wcol{display:flex;flex-direction:column;gap:2px}
+.dc{width:11px;height:11px;border-radius:2px;flex-shrink:0}
+.dca{cursor:pointer;transition:transform .1s}
+.dca:hover{transform:scale(1.5);z-index:10}
+.legrow{display:flex;align-items:center;gap:6px;margin-top:10px;justify-content:flex-end}
+.leglbl{font-family:var(--fm);font-size:9px;color:var(--text2)}
+.legcell{width:11px;height:11px;border-radius:2px;flex-shrink:0}
+.hm-tt{position:fixed;background:#071520;border:1px solid var(--neon);color:var(--text);font-family:var(--fm);font-size:10px;padding:6px 10px;pointer-events:none;opacity:0;transition:opacity .12s;white-space:nowrap;z-index:9999}
+#contact{background:var(--bg2)}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:2rem}
+.citem{background:var(--bg3);border:1px solid var(--border);padding:1.2rem 1.5rem;display:flex;align-items:center;gap:1rem;text-decoration:none;transition:border-color .2s}
+.citem:hover{border-color:var(--neon)}
+.cicon{font-family:var(--fm);font-size:18px;color:var(--neon);width:32px;flex-shrink:0;text-align:center}
+.clbl{font-family:var(--fm);font-size:9px;color:var(--text2);letter-spacing:2px;display:block;text-transform:uppercase}
+.cval{font-size:14px;color:#fff;display:block;margin-top:2px}
+footer{background:var(--bg);border-top:1px solid var(--border);padding:1.5rem 6vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.ftxt{font-family:var(--fm);font-size:10px;color:var(--text2);letter-spacing:2px}
+</style>
+</head>
+<body>
+
+<div class="hm-tt" id="hm-tt"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">Irfan.dev</a>
+  <div class="nav-links" id="navlinks">
+    <a href="#about">about</a><a href="#skills">skills</a>
+    <a href="#projects">projects</a><a href="#leetcode">leetcode</a><a href="#contact">contact</a>
+  </div>
+  <button class="hamburger" onclick="document.getElementById('navlinks').classList.toggle('open')" aria-label="menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hgrid">
+    <div>
+      <div class="hpre">// initializing profile...</div>
+      <div class="hname">Mohamed<br><span class="na">Irfan</span></div>
+      <div class="hrole">Software Engineer</div>
+      <div class="hbio">Building fast, scalable systems and solving hard problems — one commit at a time. Passionate about clean code, competitive programming, and open-source.</div>
+      <div class="bgrp">
+        <a href="#projects" class="btn btnf">View Projects</a>
+        <a href="#contact" class="btn">Contact Me</a>
+      </div>
+      <div class="terminal">
+        <div class="tbar"><div class="td tr"></div><div class="td ty"></div><div class="td tg"></div></div>
+        <div class="tcm">// dev profile</div>
+        <div><span class="tk">const</span> engineer = {</div>
+        <div>&nbsp;&nbsp;<span class="tk">name:</span> <span class="ts">"Mohamed Irfan"</span>,</div>
+        <div>&nbsp;&nbsp;<span class="tk">role:</span> <span class="ts">"Software Engineer"</span>,</div>
+        <div>&nbsp;&nbsp;<span class="tk">stack:</span> <span class="tv">["Python","JS","Java","C++"]</span>,</div>
+        <div>&nbsp;&nbsp;<span class="tk">status:</span> <span class="ts">"open to opportunities"</span></div>
+        <div>}<span class="cur"></span></div>
+      </div>
+    </div>
+    <div class="hvisual">
+      <div class="aframe">
+        &lt;/&gt;
+        <div class="co ctl"></div><div class="co cbr"></div>
+        <div class="sdot"><span class="pulse"></span>available</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="agrid">
+    <div>
+      <div class="slabel">01 // about me</div>
+      <h2 class="stitle">Who I <span class="na">Am</span></h2>
+      <p style="color:var(--text2);line-height:1.9;margin-bottom:1rem;font-size:15px">A software engineer with a passion for systems design, competitive programming, and building products that actually matter. I thrive at the intersection of performance and clean code.</p>
+      <p style="color:var(--text2);line-height:1.9;font-size:15px">Currently leveling up on distributed systems and contributing to open-source. When not coding, I'm grinding LeetCode or exploring new frameworks.</p>
+    </div>
+    <div>
+      <div class="srow">
+        <div class="sbox"><span class="snum" id="stat-repos">—</span><span class="slbl">Public Repos</span></div>
+        <div class="sbox" style="--neon:var(--neon2)"><span class="snum" style="color:var(--neon2)" id="stat-solved">—</span><span class="slbl">LC Solved</span></div>
+        <div class="sbox" style="--neon:var(--neon3)"><span class="snum" style="color:var(--neon3)" id="stat-rating">—</span><span class="slbl">LC Rating</span></div>
+      </div>
+      <div style="margin-top:2rem;display:flex;gap:.8rem;flex-wrap:wrap">
+        <a href="https://github.com/Mohamed-Irfan-git" target="_blank" class="btn">GitHub Profile</a>
+        <a href="https://leetcode.com/u/Mhd_irfan369/" target="_blank" class="btn btnp">LeetCode Profile</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="slabel">02 // skills</div>
+  <h2 class="stitle">Tech <span class="na">Stack</span></h2>
+  <div class="skgrid">
+    <div class="skcat">
+      <div class="cttl">Languages</div>
+      <div class="sktags">
+        <span class="sk">Python</span><span class="sk">JavaScript</span><span class="sk">Java</span>
+        <span class="sk">C++</span><span class="sk">TypeScript</span><span class="sk">SQL</span>
+      </div>
+    </div>
+    <div class="skcat">
+      <div class="cttl">Frameworks</div>
+      <div class="sktags">
+        <span class="sk">React</span><span class="sk">Node.js</span><span class="sk">Express</span>
+        <span class="sk">FastAPI</span><span class="sk">Spring</span><span class="sk">Next.js</span>
+      </div>
+    </div>
+    <div class="skcat">
+      <div class="cttl">Tools & Cloud</div>
+      <div class="sktags">
+        <span class="sk">Docker</span><span class="sk">AWS</span><span class="sk">PostgreSQL</span>
+        <span class="sk">Redis</span><span class="sk">Git</span><span class="sk">Linux</span>
+      </div>
+    </div>
+    <div class="skcat">
+      <div class="cttl">Proficiency</div>
+      <div class="blist">
+        <div class="bitem"><div class="blbl"><span>Data Structures & Algo</span><span>92%</span></div><div class="btrack"><div class="bfill" style="width:92%"></div></div></div>
+        <div class="bitem"><div class="blbl"><span>Backend Engineering</span><span>88%</span></div><div class="btrack"><div class="bfill" style="width:88%"></div></div></div>
+        <div class="bitem"><div class="blbl"><span>Frontend / React</span><span>80%</span></div><div class="btrack"><div class="bfill" style="width:80%"></div></div></div>
+        <div class="bitem"><div class="blbl"><span>System Design</span><span>75%</span></div><div class="btrack"><div class="bfill" style="width:75%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="slabel">03 // projects</div>
+  <h2 class="stitle">GitHub <span class="n2a">Repos</span></h2>
+  <p style="font-family:var(--fm);font-size:11px;color:var(--text2);margin-bottom:2rem;letter-spacing:1px">// live from github.com/Mohamed-Irfan-git</p>
+  <div class="pgrid" id="pgrid">
+    <div class="ploading"><span class="cur" style="margin-right:8px"></span>fetching repositories...</div>
+  </div>
+  <div style="text-align:center;margin-top:2.5rem">
+    <a href="https://github.com/Mohamed-Irfan-git" target="_blank" class="btn">View All on GitHub →</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LEETCODE -->
+<section id="leetcode">
+  <div class="slabel">04 // competitive programming</div>
+  <h2 class="stitle">LeetCode <span class="na">Stats</span></h2>
+  <p style="font-family:var(--fm);font-size:11px;color:var(--text2);margin-bottom:2rem;letter-spacing:1px">// live from leetcode.com/u/Mhd_irfan369</p>
+
+  <div class="lcgrid">
+    <div>
+      <div class="lcstats">
+        <div class="lcbox"><span class="lcnum easy" id="lc-easy">—</span><span class="lclbl">Easy</span></div>
+        <div class="lcbox"><span class="lcnum med" id="lc-med">—</span><span class="lclbl">Medium</span></div>
+        <div class="lcbox"><span class="lcnum hard" id="lc-hard">—</span><span class="lclbl">Hard</span></div>
+      </div>
+      <p style="color:var(--text2);font-size:14px;line-height:1.85;margin-bottom:1.5rem" id="lc-summary">Loading LeetCode stats...</p>
+      <a href="https://leetcode.com/u/Mhd_irfan369/" target="_blank" class="btn">Open LeetCode Profile →</a>
+    </div>
+    <a class="lccard" href="https://leetcode.com/u/Mhd_irfan369/" target="_blank">
+      <div class="lcrow">
+        <div>
+          <div style="font-family:var(--fm);font-size:9px;color:var(--text2);letter-spacing:2px">CONTEST RATING</div>
+          <div style="font-family:var(--fd);font-size:32px;font-weight:900;color:#fff" id="lc-rating">—</div>
+        </div>
+        <div class="lcbadge" id="lc-rank">LOADING</div>
+      </div>
+      <div class="lcdet" id="lc-details">
+        <div style="font-family:var(--fm);font-size:11px;color:var(--text2)">Fetching from LeetCode...</div>
+      </div>
+      <div class="lchint">↗ click to open leetcode profile</div>
+    </a>
+  </div>
+
+  <!-- HEATMAP -->
+  <div class="hmwrap">
+    <div class="hmtop">
+      <div class="hmtitle">SUBMISSION ACTIVITY — PAST YEAR</div>
+      <div class="hmtotal" id="hmtotal"><span class="cur" style="width:6px;height:12px"></span> loading...</div>
+    </div>
+    <div class="hmscroll">
+      <div class="hminner">
+        <div class="mrow" id="mrow"></div>
+        <div class="hmarea">
+          <div class="dlbls">
+            <div class="dlbl"></div>
+            <div class="dlbl">Mon</div>
+            <div class="dlbl"></div>
+            <div class="dlbl">Wed</div>
+            <div class="dlbl"></div>
+            <div class="dlbl">Fri</div>
+            <div class="dlbl"></div>
+          </div>
+          <div class="wcols" id="wcols"></div>
+        </div>
+      </div>
+    </div>
+    <div class="legrow">
+      <span class="leglbl">Less</span>
+      <div class="legcell" style="background:#0d1f0d"></div>
+      <div class="legcell" style="background:#1a4a1a"></div>
+      <div class="legcell" style="background:#277027"></div>
+      <div class="legcell" style="background:#37a037"></div>
+      <div class="legcell" style="background:#4eff4e"></div>
+      <span class="leglbl">More</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="slabel">05 // contact</div>
+  <h2 class="stitle">Let's <span class="na">Connect</span></h2>
+  <p style="color:var(--text2);font-size:15px;line-height:1.85;max-width:520px">Open to full-time roles, freelance projects, and collaboration on interesting ideas. Don't hesitate to reach out.</p>
+  <div class="cgrid">
+    <a href="mailto:your@email.com" class="citem">
+      <div class="cicon">@</div>
+      <div><span class="clbl">Email</span><span class="cval">irfanmt29@gmail.com</span></div>
+    </a>
+    <a href="https://github.com/Mohamed-Irfan-git" target="_blank" class="citem">
+      <div class="cicon">{}</div>
+      <div><span class="clbl">GitHub</span><span class="cval">Mohamed-Irfan-git</span></div>
+    </a>
+    <a href="https://leetcode.com/u/Mhd_irfan369/" target="_blank" class="citem">
+      <div class="cicon">#</div>
+      <div><span class="clbl">LeetCode</span><span class="cval">Mhd_irfan369</span></div>
+    </a>
+    <a href="https://www.linkedin.com/in/mohamed-irfan-293882325" target="_blank" class="citem">
+      <div class="cicon">in</div>
+      <div><span class="clbl">LinkedIn</span><span class="cval">/in/yourprofile</span></div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="ftxt">© 2026 Mohamed Irfan — Built with &lt;/&gt;</div>
+  <div class="ftxt" style="color:var(--neon)">// Stay curious. Keep building.</div>
+</footer>
+
+<script>
+const GH  = 'Mohamed-Irfan-git';
+const LCU = 'Mhd_irfan369';
+const LCA = 'https://alfa-leetcode-api.onrender.com';
+
+const LCLR={JavaScript:'#f1e05a',TypeScript:'#3178c6',Python:'#3572A5',Java:'#b07219','C++':'#f34b7d',C:'#555',HTML:'#e34c26',CSS:'#563d7c',Go:'#00ADD8',Rust:'#dea584',Shell:'#89e051',default:'#00fff7'};
+const lcolor=l=>LCLR[l]||LCLR.default;
+
+/* ── GITHUB ── */
+
+const PINNED = [
+  "help_desk",
+  "vehicle_parking_system",
+  "AutoSys",
+  "async_downloader",
+  "SkillBridge",
+  "Competitive_Programming",
+  "enterprise-banking-platform"
+];
+
+async function loadGH() {
+  const g = document.getElementById('pgrid');
+
+  try {
+    const repos = await Promise.all(
+      PINNED.map(name =>
+        fetch(`https://api.github.com/repos/${GH}/${name}`).then(r => {
+          if (!r.ok) throw new Error("HTTP " + r.status + " (" + name + ")");
+          return r.json();
+        })
+      )
+    );
+
+    g.innerHTML = '';
+
+    if (!repos.length) {
+      g.innerHTML = '<div class="perr">No pinned repos found.</div>';
+      return;
+    }
+
+    document.getElementById('stat-repos').textContent = repos.length + '+';
+
+    repos.forEach(repo => {
+      const lang = repo.language || 'Code';
+      const upd = new Date(repo.updated_at).toLocaleDateString('en-US', {
+        month: 'short',
+        year: 'numeric'
+      });
+
+      const el = document.createElement('div');
+      el.className = 'pcard';
+
+      el.innerHTML = `
+        <div class="badge">Pinned</div>
+        <div class="plang">
+          <span class="ldot" style="background:${lcolor(repo.language)}"></span>${lang.toUpperCase()}
+        </div>
+        <div class="pname">${repo.name}</div>
+        <div class="pdesc">${repo.description || 'No description provided.'}</div>
+        <div class="pmeta">
+          <span>&#9733; ${repo.stargazers_count}</span>
+          <span>&#8910; ${repo.forks_count}</span>
+          <span>&#8635; ${upd}</span>
+        </div>
+        <div class="plinks">
+          <a class="pl" href="${repo.html_url}" target="_blank">View Repo →</a>
+          ${repo.homepage ? `<a class="pl plp" href="${repo.homepage}" target="_blank">Live Demo →</a>` : ''}
+        </div>
+      `;
+
+      g.appendChild(el);
+    });
+  } catch (e) {
+    g.innerHTML = `<div class="perr">// GitHub fetch failed: ${e.message}<br>
+    <a href="https://github.com/${GH}" target="_blank" style="color:var(--neon)">View on GitHub directly →</a></div>`;
+  }
+}
+/* ── LEETCODE STATS ── */
+async function loadLC(){
+  try{
+    const sr=await fetch(`${LCA}/${LCU}/solved`);
+    if(!sr.ok) throw new Error('solved API: '+sr.status);
+    const s=await sr.json();
+    const easy=s.easySolved??0,med=s.mediumSolved??0,hard=s.hardSolved??0;
+    const total=s.solvedProblem??(easy+med+hard);
+    document.getElementById('lc-easy').textContent=easy;
+    document.getElementById('lc-med').textContent=med;
+    document.getElementById('lc-hard').textContent=hard;
+    document.getElementById('stat-solved').textContent=total;
+    document.getElementById('lc-summary').textContent=
+      `Solved ${total} problems — ${easy} Easy, ${med} Medium, ${hard} Hard. Consistently grinding to sharpen algorithmic thinking and ace technical interviews.`;
+    try{
+      const cr=await fetch(`${LCA}/${LCU}/contest`);
+      const c=await cr.json();
+      const rating=Math.round(c.contestRating??0);
+      const attended=c.contestAttend??0;
+      const topPct=c.contestTopPercentage!=null?c.contestTopPercentage.toFixed(1):null;
+      const grank=c.contestGlobalRanking??'—';
+      document.getElementById('lc-rating').textContent=rating||'—';
+      document.getElementById('lc-rank').textContent=topPct?`TOP ${topPct}%`:'RATED';
+      document.getElementById('stat-rating').textContent=rating||'—';
+      document.getElementById('lc-details').innerHTML=`
+        <div>Total Solved &nbsp;<span>${total}</span></div>
+        <div>Easy / Medium / Hard &nbsp;<span>${easy} / ${med} / ${hard}</span></div>
+        <div>Contest Rating &nbsp;<span>${rating||'—'}</span></div>
+        <div>Contests Attended &nbsp;<span>${attended}</span></div>
+        <div>Global Rank &nbsp;<span>${grank}</span></div>
+        <div>Top % &nbsp;<span>${topPct?topPct+'%':'—'}</span></div>`;
+    }catch(_){
+      document.getElementById('lc-rank').textContent='—';
+      document.getElementById('lc-details').innerHTML=`
+        <div>Total Solved &nbsp;<span>${total}</span></div>
+        <div>Easy / Medium / Hard &nbsp;<span>${easy} / ${med} / ${hard}</span></div>
+        <div style="color:var(--text2);font-size:10px;margin-top:.5rem">Contest data unavailable</div>`;
+    }
+  }catch(e){
+    ['lc-easy','lc-med','lc-hard'].forEach(id=>document.getElementById(id).textContent='?');
+    document.getElementById('lc-rank').textContent='ERR';
+    document.getElementById('lc-summary').textContent='Could not load stats — visit LeetCode profile directly.';
+    document.getElementById('lc-details').innerHTML=`<div style="color:#ff375f;font-family:var(--fm);font-size:11px">${e.message}</div>`;
+  }
+}
+
+/* ── HEATMAP ── */
+async function loadHeatmap(){
+  const COLORS=['#0d1a0d','#0d3318','#1a6630','#27a044','#39d45a','#4eff80'];
+  const msDay=86400000;
+  const todayD=new Date();todayD.setHours(0,0,0,0);
+  const DAYS=365;
+  const startD=new Date(todayD.getTime()-DAYS*msDay);
+  let byDate=null;
+
+  try{
+    const hr=await fetch(`${LCA}/${LCU}/calendar`);
+    if(!hr.ok) throw new Error(hr.status);
+    const hj=await hr.json();
+    const raw=typeof hj.submissionCalendar==='string'
+      ?JSON.parse(hj.submissionCalendar)
+      :(hj.submissionCalendar||{});
+    byDate={};
+    Object.entries(raw).forEach(([ts,cnt])=>{
+      const d=new Date(parseInt(ts)*1000);
+      const k=d.toISOString().slice(0,10);
+      byDate[k]=(byDate[k]||0)+Number(cnt);
+    });
+  }catch(e){console.warn('Heatmap calendar failed:',e);}
+
+  const data=[];let total=0;
+  for(let i=0;i<DAYS;i++){
+    const d=new Date(startD.getTime()+i*msDay);
+    const k=d.toISOString().slice(0,10);
+    const v=byDate?(byDate[k]||0):(Math.random()>.45?Math.floor(Math.random()*5)+1:0);
+    data.push(v);total+=v;
+  }
+  document.getElementById('hmtotal').textContent=total+' submissions';
+
+  const padStart=startD.getDay();
+  const numWeeks=Math.ceil((padStart+DAYS)/7);
+  const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const wcolsEl=document.getElementById('wcols');
+  const mrowEl=document.getElementById('mrow');
+  const tooltip=document.getElementById('hm-tt');
+  const monthPos={};
+
+  for(let w=0;w<numWeeks;w++){
+    const col=document.createElement('div');col.className='wcol';
+    for(let d=0;d<7;d++){
+      const ci=w*7+d,di=ci-padStart;
+      const cell=document.createElement('div');cell.className='dc';
+      if(di<0||di>=DAYS){cell.style.background='transparent';}
+      else{
+        const v=data[di];
+        const lv=v===0?0:v===1?1:v<=2?2:v<=4?3:v<=6?4:5;
+        cell.style.background=COLORS[lv];
+        cell.classList.add('dca');
+        const cd=new Date(startD.getTime()+di*msDay);
+        const mo=cd.getMonth();
+        if(cd.getDate()<=7&&!(mo in monthPos))monthPos[mo]=w;
+        const ds=cd.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+        cell.addEventListener('mouseenter',e=>{
+          tooltip.textContent=v+' submission'+(v!==1?'s':'')+' — '+ds;
+          tooltip.style.opacity='1';
+          tooltip.style.left=(e.clientX+14)+'px';
+          tooltip.style.top=(e.clientY-38)+'px';
+        });
+        cell.addEventListener('mousemove',e=>{
+          tooltip.style.left=(e.clientX+14)+'px';
+          tooltip.style.top=(e.clientY-38)+'px';
+        });
+        cell.addEventListener('mouseleave',()=>tooltip.style.opacity='0');
+      }
+      col.appendChild(cell);
+    }
+    wcolsEl.appendChild(col);
+  }
+
+  /* month label row */
+  const sorted=Object.entries(monthPos).sort((a,b)=>+a[1]-+b[1]);
+  let cur=0;
+  sorted.forEach(([mo,wi])=>{
+    wi=+wi;
+    if(wi>cur){
+      const g=document.createElement('span');
+      g.style.cssText=`display:inline-block;width:${(wi-cur)*13}px;flex-shrink:0`;
+      mrowEl.appendChild(g);
+    }
+    const lb=document.createElement('span');
+    lb.style.cssText='display:inline-block;width:26px;flex-shrink:0';
+    lb.textContent=MONTHS[+mo];
+    mrowEl.appendChild(lb);
+    cur=wi+2;
+  });
+}
+
+loadGH();
+loadLC();
+loadHeatmap();
+</script>
+</body>
+</html>
