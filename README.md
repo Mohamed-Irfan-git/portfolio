@@ -1,24 +1,23 @@
 # Mohamed Irfan — Portfolio
 
-A portrait-led portfolio for Mohamed Irfan, focused on AI engineering, cloud and microservices development, and competitive programming. The site uses semantic HTML, CSS, and native JavaScript modules; it has no build step or installed runtime dependencies.
+An existing React, Vite, and React Three Fiber portfolio. The 3D view uses one persistent Canvas, procedural scenes, and a GSAP ScrollTrigger camera timeline. On mobile, reduced-motion devices, or when Simple view is selected, the same portfolio content is presented in HTML.
 
 ## Run locally
 
-Node 18 or newer is required. From the project directory:
-
 ```sh
-node preview-server.mjs
+npm install
+npm run dev
 ```
 
-Open `http://localhost:8000`. The preview server serves same-origin GitHub and LeetCode endpoints. JavaScript also falls back to the public GitHub API and, if that is unavailable, to the dated public repository snapshot in `assets/data/public-repositories.json`. LeetCode shows a clear profile link if live stats cannot load.
+Open the URL printed by Vite. `npm run build` creates the production files in `dist/`. The Vite server provides `/api/github` and `/api/leetcode`; their serverless handlers are in `api/`.
 
-## Content and design
+## Current content and assets
 
-- `js/portfolio-data.js` contains identity, education, skills, social links, and prepared answers for the local DEEP portfolio guide.
-- `js/github-projects.js` loads public GitHub repository data and controls featured ordering. Project imagery is explicitly labeled conceptual artwork; it is not presented as a screenshot of the repository.
-- `js/leetcode-performance.js` renders the public LeetCode profile data.
-- `css/` contains design tokens, layout, responsive rules, and reduced-motion behavior.
-- `assets/images/irfan-editorial.webp` is an identity-preserving editorial edit of the supplied portrait. `assets/images/connected-systems.webp` is a generated conceptual artwork for the gallery.
-- `design-qa.md` records the visual and browser checks; `qa/` contains review captures.
+- `src/data/portfolio.js` holds identity, skills, contact details, architecture descriptions, and DEEP's prepared answers.
+- `src/data/projects.js` orders GitHub repositories. `src/data/repositories.json` is the dated fallback when live GitHub data is unavailable. Project cards currently use conceptual title art, not screenshots.
+- `src/components/LeetCode.jsx` fetches live statistics and labels cached or baseline values separately when the live request is unavailable.
+- The portrait is in `public/images/`. The 3D rooms use procedural geometry; no GLB models are installed.
+- **TODO: Add the real CV PDF at `public/cv/Irfan-CV.pdf`.** The Download CV link already points to `/cv/Irfan-CV.pdf` and will return 404 until that file is supplied.
+- The contact section includes a Formspree form, an animated terminal prompt, and the real email, GitHub, LinkedIn, and LeetCode links. Add `VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/YOUR_FORM_ID` to the existing `.env.local` file after creating a form in Formspree, then restart `npm run dev`. Keep the existing GitHub variables in `.env.local`.
 
-External Google Fonts enhance the typography. System font fallbacks remain usable when fonts are unavailable. The site needs no API key for local preview. An optional `GITHUB_TOKEN` can be set in a serverless environment to raise GitHub API limits.
+The portfolio upgrade is being delivered one phase at a time. Phase 0 fixes layout and presentation bugs while preserving the current content and behavior.

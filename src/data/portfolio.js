@@ -27,6 +27,18 @@ export const portfolioData = {
     githubLabel: "Mohamed-Irfan-git",
     linkedin: "https://www.linkedin.com/in/mohamed-irfan-293882325",
     linkedinLabel: "/in/mohamed-irfan-293882325",
+    leetcode: "https://leetcode.com/u/Mhd_irfan369/",
+  },
+  leetcodeFallback: {
+    totalSolved: 324,
+    difficulties: [
+      { name: "Easy", solved: 101 },
+      { name: "Medium", solved: 189 },
+      { name: "Hard", solved: 34 },
+    ],
+    profileRanking: 464261,
+    contestRating: 1514,
+    contestsAttended: 5,
   },
   skillGroups: [
     {
