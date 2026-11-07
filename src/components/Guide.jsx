@@ -5,7 +5,7 @@ function answer(question) {
   if (/contact|email|reach|linkedin/.test(q)) return { text: `You can reach Irfan at ${data.contact.email}, or connect on LinkedIn.`, href:'#contact', label:'Let’s talk' };
   if (/leetcode|competitive|algorithm/.test(q)) return { text:'Irfan explores data structures, algorithms, and competitive programming. Visit the problem-solving section for his public LeetCode profile and available live stats.', href:'#leetcode', label:'Problem solving' };
   if (/project|work|build|\bai\b/.test(q)) return { text:'Explore tableFlow, Rag-System, help_desk, Nexora, and more in the project gallery. Each project links directly to its public source code.', href:'#projects',label:'Explore projects' };
-  if (/skill|tech|java|cloud|backend/.test(q)) return { text:`His toolkit includes ${data.skillGroups.flatMap(g=>g.skills).slice(0,18).join(', ')}.`, href:'#skills',label:'Explore skills' };
+  if (/skill|tech|java|cloud|backend/.test(q)) return { text:`His toolkit includes ${data.skillGroups.flatMap(group=>group.items.map(item=>item.name)).slice(0,18).join(', ')}.`, href:'#skills',label:'Explore skills' };
   if (/learn|focus|next/.test(q)) return { text:`His current focus is ${data.identity.currentFocus}.`,href:'#about',label:'Meet Irfan' };
   if (/who|irfan|about|study|university/.test(q)) return { text:`${data.identity.name} is an AI, cloud and microservices developer. ${data.identity.education}.`,href:'#about',label:'Meet Irfan' };
   return {text:'Ask me about Irfan’s background, skills, projects, competitive programming, or contact details.'};

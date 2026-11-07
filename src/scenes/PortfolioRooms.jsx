@@ -4,7 +4,7 @@ import { Line } from '@react-three/drei';
 import { CanvasTexture, SRGBColorSpace } from 'three';
 import { progressRef } from '../three/progress.js';
 import { portfolioData } from '../data/portfolio';
-import { Box, Label, Monitor, Room } from './Objects';
+import { Box, Monitor, Room } from './Objects';
 
 export function AboutScene(){return <group position={[0,0,-24]}><Room/></group>;}
 
@@ -23,7 +23,7 @@ function ProjectNode({project,index,position,onSelect}){
   const titleSize=lines.length>2?50:66;ctx.font=`600 ${titleSize}px sans-serif`;ctx.fillStyle='#f8fafc';
   lines.slice(0,3).forEach((text,i)=>ctx.fillText(text,54,220+i*78));
   ctx.fillStyle=color;ctx.fillRect(54,470,66,4);
-  ctx.font='24px monospace';ctx.fillStyle='#b7c2d2';ctx.fillText(project.language||'Source code',54,524);
+  if(project.language){ctx.font='24px monospace';ctx.fillStyle='#b7c2d2';ctx.fillText(project.language,54,524);}
   const map=new CanvasTexture(canvas);map.colorSpace=SRGBColorSpace;return map;
  },[project.name,project.language,index]);
  useEffect(()=>()=>texture.dispose(),[texture]);
@@ -46,13 +46,15 @@ function ProjectNode({project,index,position,onSelect}){
 function ProjectConnections({nodes}){
  const root=useRef(),packets=useRef([]);
  const links=nodes.slice(0,-1).map((node,index)=>({from:node.position,to:nodes[index+1].position}));
- useFrame(()=>{
+ useFrame(({clock})=>{
   const progress=progressRef.current;
   const systemProgress=Math.max(0,Math.min(1,(progress-.37)/.26));
-  if(root.current)root.current.visible=progress>=.35&&progress<=.66;
+  const active=progress>=.35&&progress<=.66;
+  if(root.current)root.current.visible=active;
+  if(!active)return;
   packets.current.forEach((packet,index)=>{
    if(!packet||!links[index])return;
-   const phase=(systemProgress*2.8+index*.31)%1;
+   const phase=(systemProgress*2.8+clock.elapsedTime*.045+index*.31)%1;
    packet.position.set(
     links[index].from[0]+(links[index].to[0]-links[index].from[0])*phase,
     links[index].from[1]+(links[index].to[1]-links[index].from[1])*phase,
@@ -70,8 +72,18 @@ function ProjectConnections({nodes}){
 }
 
 export function ProjectGallery({projects=[],onSelect}){
- const nodes=useMemo(()=>projects.map((project,index)=>({project,index,position:[index%2===0?-3.65:3.65,2.8+(index%2)*.35,-20-Math.floor(index/2)*4.4]})),[projects]);
- return <group>
+ const gallery=useRef();
+ const nodes=useMemo(()=>projects.map((project,index)=>({project,index,position:[index%2===0?-3.65:3.65,2.8+(index%2)*.35,-17-Math.floor(index/2)*1.5]})),[projects]);
+ useFrame(({clock})=>{
+  const progress=progressRef.current;
+  const active=progress>=.37&&progress<.63;
+  if(gallery.current){
+   gallery.current.visible=active;
+   gallery.current.position.y=active ? .035*Math.sin(clock.elapsedTime*.28) : 0;
+   gallery.current.rotation.y=active ? .003*Math.sin(clock.elapsedTime*.2) : 0;
+  }
+ });
+ return <group ref={gallery}>
   <ProjectConnections nodes={nodes}/>
   {nodes.map(node=><ProjectNode key={node.project.name} project={node.project} index={node.index} position={node.position} onSelect={onSelect}/>) }
  </group>;
@@ -79,7 +91,11 @@ export function ProjectGallery({projects=[],onSelect}){
 
 function SkillRings({groups,activeId,onSelect,onHover}){
  const rings=useRef([]);
- useFrame((_,delta)=>rings.current.forEach((ring,index)=>{if(ring)ring.rotation.z+=delta*(index%2===0?.035:-.035);}));
+ useFrame((_,delta)=>{
+  const progress=progressRef.current;
+  if(progress<.56||progress>=.76||document.visibilityState==='hidden')return;
+  rings.current.forEach((ring,index)=>{if(ring)ring.rotation.z+=delta*(index%2===0?.035:-.035);});
+ });
  return <group position={[0,2.8,-1]}>
   {groups.map((group,index)=>{
    const radius=2.05+index*.2,selected=group.id===activeId;
@@ -98,12 +114,8 @@ function SkillRings({groups,activeId,onSelect,onHover}){
 }
 export function SkillsScene({skillGroups=[],activeSkill,onSkillSelect,leetcodeStats}){
  const [hovered,setHovered]=useState(null);
- const technologyPanel=useRef(),scorePanel=useRef();
+ const scorePanel=useRef();
  const active=skillGroups.find(group=>group.id===activeSkill)||skillGroups[0];
- const displayed=skillGroups.find(group=>group.id===hovered)||active;
- const technologies=displayed?.skills||[];
- const rows=[];for(let index=0;index<technologies.length;index+=2)rows.push(technologies.slice(index,index+2).join(' · '));
- const panelText=displayed?[displayed.title.toUpperCase(),...rows].join('\n'):'';
  const score=leetcodeStats||{...portfolioData.leetcodeFallback,source:'baseline'};
  const scoreRows=[
   `LEETCODE / ${score.source==='live'?'LIVE':score.source==='cached'?'CACHE':'BASELINE'}`,
@@ -115,7 +127,6 @@ export function SkillsScene({skillGroups=[],activeSkill,onSkillSelect,leetcodeSt
  ];
  useFrame(()=>{
   const progress=progressRef.current;
-  if(technologyPanel.current)technologyPanel.current.visible=progress>=.63&&progress<.76;
   if(scorePanel.current)scorePanel.current.visible=progress>=.76&&progress<.84;
  });
  return <group position={[0,0,-60]}>
@@ -129,10 +140,8 @@ export function SkillsScene({skillGroups=[],activeSkill,onSkillSelect,leetcodeSt
   </mesh>
   <pointLight position={[0,2.8,-1]} color="#e63946" intensity={14} distance={13}/>
   <pointLight position={[-3,4,-2]} color="#f59e0b" intensity={3.5} distance={10}/>
-  <Label text="THE CORE / TOOLKIT" position={[0,4.55,-1]} width={3.1} height={.34} small color="#e8c8ce" background="#111827"/>
   <SkillRings groups={skillGroups} activeId={hovered||active?.id} onHover={setHovered} onSelect={onSkillSelect}/>
   <group ref={scorePanel}><Monitor position={[-5.3,3,-1]} scale={1.1} text={scoreRows.join('\n')} accent="#f59e0b"/></group>
-  {displayed&&<group ref={technologyPanel}><Monitor position={[5.3,3,-1]} scale={1.45} text={panelText} accent="#ff7580"/></group>}
  </group>;
 }
 export function ContactScene({sent=false}){

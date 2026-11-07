@@ -1,3 +1,9 @@
+const projectRecord = (name, featured = false) => ({
+  name, outcome: null, status: null, tech: [], preview: null, features: [],
+  problem: null, approach: null, result: null, learned: null,
+  featured, github: null, live: null,
+});
+
 export const portfolioData = {
   identity: {
     name: "Mohamed Irfan",
@@ -40,60 +46,97 @@ export const portfolioData = {
     contestRating: 1514,
     contestsAttended: 5,
   },
+  projects: [
+    // Curated foreground cards; the background gallery uses the full repository feed.
+    { ...projectRecord("tableFlow", true), live: "https://table-flow-delta.vercel.app/" },
+    projectRecord("Rag-System"),
+    projectRecord("help_desk"),
+    projectRecord("Nexora"),
+  ],
   skillGroups: [
     {
       id: "problem-solving",
       title: "Competitive Programming",
-      mark: "CP",
-      skills: ["Algorithms", "Data Structures", "Java", "C++"],
+      tagline: "Solve problems through algorithms and data structures.",
+      visual: "ring",
+      items: [
+        { name: "Algorithms", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "Data Structures", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "Java", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "C++", level: null, usedIn: [], todo: ["level", "usedIn"] },
+      ],
     },
     {
       id: "backend",
       title: "Backend & Microservices",
-      mark: "API",
-      skills: [
-        "Java",
-        "Spring Boot",
-        "Spring Security",
-        "Hibernate",
-        "REST APIs",
+      tagline: "Build connected systems with Java and Spring Boot.",
+      visual: "flow",
+      items: [
+        { name: "Java", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "Spring Boot", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "Spring Security", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "Hibernate", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "REST APIs", level: null, usedIn: [], todo: ["level", "usedIn"] },
       ],
     },
     {
       id: "frontend",
       title: "Frontend Engineering",
-      mark: "UI",
-      skills: ["JavaScript", "HTML", "CSS", "React"],
+      tagline: "Build full-stack web experiences with React.",
+      visual: "ui",
+      items: [
+        { name: "JavaScript", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "HTML", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "CSS", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "React", level: null, usedIn: [], todo: ["level", "usedIn"] },
+      ],
     },
     {
       id: "databases",
       title: "Databases",
-      mark: "DB",
-      skills: ["PostgreSQL", "MySQL", "MongoDB", "Supabase"],
+      tagline: "Work with PostgreSQL and other database tools.",
+      visual: "tables",
+      items: [
+        { name: "PostgreSQL", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "MySQL", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "MongoDB", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "Supabase", level: null, usedIn: [], todo: ["level", "usedIn"] },
+      ],
     },
     {
       id: "devops",
       title: "Cloud & Infrastructure",
-      mark: "OPS",
-      skills: ["Docker", "Git", "GitHub", "Linux"],
+      tagline: "Explore cloud development and Docker deployment.",
+      visual: "layers",
+      items: [
+        { name: "Docker", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "Git", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "GitHub", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "Linux", level: null, usedIn: [], todo: ["level", "usedIn"] },
+      ],
     },
     {
       id: "architecture",
       title: "Architecture",
-      mark: "SYS",
-      skills: [
-        "Microservices",
-        "API Gateway",
-        "Service Discovery",
-        "Kafka",
-        "Event-Driven Architecture",
+      tagline: "Think about service communication and data flow.",
+      visual: "arch",
+      items: [
+        { name: "Microservices", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "API Gateway", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "Service Discovery", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "Kafka", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "Event-Driven Architecture", level: null, usedIn: [], todo: ["level", "usedIn"] },
       ],
     },
     {
       id: "ai",
       title: "AI Engineering",
-      mark: "AI",
-      skills: ["AI integrations", "Applied AI projects"],
+      tagline: "Build intelligent applications with AI integrations.",
+      visual: "graph",
+      items: [
+        { name: "AI integrations", level: null, usedIn: [], todo: ["level", "usedIn"] },
+        { name: "Applied AI projects", level: null, usedIn: [], todo: ["level", "usedIn"] },
+      ],
     },
   ],
   architecture: [

@@ -29,7 +29,7 @@ export default function CameraRig({ door, portalLight, lightLeak, selected, proj
     if (index >= 0) {
       const x = index % 2 === 0 ? -3.65 : 3.65;
       const y = 2.8 + (index % 2) * .35;
-      const z = -20 - Math.floor(index / 2) * 4.4;
+      const z = -17 - Math.floor(index / 2) * 1.5;
       focusPosition.current.set(x, y, z + 3);
       focusLook.current.set(x, y, z);
     }
