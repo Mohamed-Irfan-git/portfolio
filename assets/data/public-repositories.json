@@ -1,0 +1,101 @@
+{
+  "capturedOn": "2026-11-07",
+  "repositories": [
+    {
+      "name": "tableFlow",
+      "description": "TableFlow is a premium restaurant table, reservation, and queue-management",
+      "language": "Python",
+      "topics": [],
+      "html_url": "https://github.com/Mohamed-Irfan-git/tableFlow",
+      "homepage": "https://table-flow-delta.vercel.app",
+      "updated_at": "2026-11-02T16:03:20Z",
+      "owner": {
+        "login": "Mohamed-Irfan-git"
+      }
+    },
+    {
+      "name": "Rag-System",
+      "description": null,
+      "language": "Python",
+      "topics": [],
+      "html_url": "https://github.com/Mohamed-Irfan-git/Rag-System",
+      "homepage": null,
+      "updated_at": "2026-06-06T17:58:59Z",
+      "owner": {
+        "login": "Mohamed-Irfan-git"
+      }
+    },
+    {
+      "name": "help_desk",
+      "description": "Full-stack Help Desk system built with Java and Spring Boot, featuring role-based authentication, chat and real-time issue tracking.",
+      "language": "Java",
+      "topics": [],
+      "html_url": "https://github.com/Mohamed-Irfan-git/help_desk",
+      "homepage": "",
+      "updated_at": "2026-04-18T07:19:57Z",
+      "owner": {
+        "login": "Mohamed-Irfan-git"
+      }
+    },
+    {
+      "name": "Nexora",
+      "description": "Nexora is a full-stack productivity and finance management platform that combines task management, goal tracking, habit monitoring, and expense analytics into one modern dashboard.",
+      "language": "TypeScript",
+      "topics": [],
+      "html_url": "https://github.com/Mohamed-Irfan-git/Nexora",
+      "homepage": "https://nexora-fawn-chi.vercel.app",
+      "updated_at": "2026-07-16T08:25:32Z",
+      "owner": {
+        "login": "Mohamed-Irfan-git"
+      }
+    },
+    {
+      "name": "Competitive_Programming",
+      "description": "Collection of competitive programming solutions covering data structures and algorithms, focused on problem-solving and optimization techniques.",
+      "language": "Java",
+      "topics": [],
+      "html_url": "https://github.com/Mohamed-Irfan-git/Competitive_Programming",
+      "homepage": "",
+      "updated_at": "2026-09-13T17:47:54Z",
+      "owner": {
+        "login": "Mohamed-Irfan-git"
+      }
+    },
+    {
+      "name": "offline_file_shering_app",
+      "description": "LAN Share is a lightweight cross-platform file sharing application that allows users to instantly transfer files between devices connected to the same local network. Built for speed and simplicity, it provides a clean web-based interface for secure and hassle-free file sharing without requiring internet access or external servers.",
+      "language": "Rust",
+      "topics": [],
+      "html_url": "https://github.com/Mohamed-Irfan-git/offline_file_shering_app",
+      "homepage": "",
+      "updated_at": "2026-07-19T17:01:05Z",
+      "owner": {
+        "login": "Mohamed-Irfan-git"
+      }
+    },
+    {
+      "name": "waste-management-system",
+      "description": null,
+      "language": "Java",
+      "topics": [],
+      "html_url": "https://github.com/Mohamed-Irfan-git/waste-management-system",
+      "homepage": null,
+      "updated_at": "2026-08-09T18:08:09Z",
+      "owner": {
+        "login": "Mohamed-Irfan-git"
+      }
+    },
+    {
+      "name": "SkillBridge",
+      "description": "Web-based platform built with PHP and MySQL to connect users with skill development opportunities and learning resources.",
+      "language": "PHP",
+      "topics": [],
+      "html_url": "https://github.com/Mohamed-Irfan-git/SkillBridge",
+      "homepage": "",
+      "updated_at": "2026-04-18T07:23:01Z",
+      "owner": {
+        "login": "Mohamed-Irfan-git"
+      }
+    }
+  ]
+}

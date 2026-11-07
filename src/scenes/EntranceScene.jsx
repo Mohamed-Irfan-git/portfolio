@@ -1,0 +1,6 @@
+import { forwardRef } from 'react';
+import { Box, Label } from './Objects';
+const EntranceScene=forwardRef(function EntranceScene(_,ref){
+ return <group position={[3,0,3]}><Box position={[0,-.16,0]} size={[5.3,.2,3.5]} color="#151923"/>{[-1,1].map(side=><group key={side}><Box position={[side*1.6,2.4,0]} size={[.18,4.8,.55]} color="#242934"/><Box position={[side*1.49,2.4,.3]} size={[.025,4.6,.02]} color="#e63946" emissive="#e63946"/></group>)}<Box position={[0,4.8,0]} size={[3.4,.18,.55]} color="#272d38"/><Box position={[0,4.68,.3]} size={[3,.025,.02]} color="#e63946" emissive="#e63946"/><Label text="MIM IRFAN" position={[0,5.15,.12]} width={2.5} height={.34} color="#f8fafc" small/><group ref={ref} position={[-1.45,0,.05]}><Box position={[1.43,2.35,0]} size={[2.86,4.6,.15]} color="#151b26"/><Box position={[2.6,2.05,.13]} size={[.035,.5,.06]} color="#ff4d5a" emissive="#ff4d5a"/>{[.3,1.2,2.1].map(x=><Box key={x} position={[x,2.35,.08]} size={[.012,4.4,.01]} color="#2b3140"/>)}<Label text="IRFAN\nSTUDIO / 01" position={[1.43,2.75,.083]} width={2.1} height={.85} color="#9aa6b8"/></group><pointLight position={[0,2.5,1]} color="#e63946" intensity={10} distance={7}/><pointLight position={[0,2,-2]} color="#ffbd75" intensity={9} distance={9}/></group>;
+});
+export default EntranceScene;
